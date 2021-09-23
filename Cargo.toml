@@ -5,10 +5,17 @@ edition = "2018"
 
 
 [dependencies]
-bitfield = { git = "https://github.com/ChainSafe/forest/", package = "forest_bitfield", version = "0.1" }
+
 serde = { version = "1.0", features = ["derive"] }
-encoding = { package = "forest_encoding", version = "0.2.1" }
 csv = "^1.0"
 base64 = "^0.13"
+serde_cbor = "0.10"
+bellperson = { git = "https://github.com/filecoin-project/bellperson", branch = "master" }
+#blstrs = { path = '../blstrs' }
+#bellperson = "0.16.3"
+#blstrs = { git = "https://github.com/filecoin-project/blstrs", branch = "refactor-compression" }
+blstrs = { git = "https://github.com/filecoin-project/blstrs", branch = "master" }
+#encoding = { package = "forest_encoding", version = "0.2.1" }
+#bitfield = { git = "https://github.com/ChainSafe/forest/", package = "forest_bitfield", version = "0.1" }
 #forest_actor = { git = "https://github.com/ChainSafe/forest/" }
 #fil_types = { git = "https://github.com/ChainSafe/forest/", features = ["proofs"] }
