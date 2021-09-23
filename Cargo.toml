@@ -8,5 +8,7 @@ edition = "2018"
 bitfield = { git = "https://github.com/ChainSafe/forest/", package = "forest_bitfield", version = "0.1" }
 serde = { version = "1.0", features = ["derive"] }
 encoding = { package = "forest_encoding", version = "0.2.1" }
+csv = "^1.0"
+base64 = "^0.13"
 #forest_actor = { git = "https://github.com/ChainSafe/forest/" }
 #fil_types = { git = "https://github.com/ChainSafe/forest/", features = ["proofs"] }
