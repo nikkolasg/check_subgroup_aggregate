@@ -1,0 +1,12 @@
+[package]
+name = "check-subgroup"
+version = "0.1.0"
+edition = "2018"
+
+
+[dependencies]
+bitfield = { git = "https://github.com/ChainSafe/forest/", package = "forest_bitfield", version = "0.1" }
+serde = { version = "1.0", features = ["derive"] }
+encoding = { package = "forest_encoding", version = "0.2.1" }
+#forest_actor = { git = "https://github.com/ChainSafe/forest/" }
+#fil_types = { git = "https://github.com/ChainSafe/forest/", features = ["proofs"] }
