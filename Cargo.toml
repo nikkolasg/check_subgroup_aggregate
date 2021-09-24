@@ -12,6 +12,8 @@ base64 = "^0.13"
 serde_cbor = "0.10"
 bellperson = { path = '../bellperson' }
 blstrs = { path = '../blstrs' }
+env_logger = "^0.9"
+log = "^0.4.6"
 
 #bellperson = { git = "https://github.com/filecoin-project/bellperson", branch = "master" }
 #bellperson = "0.16.3"

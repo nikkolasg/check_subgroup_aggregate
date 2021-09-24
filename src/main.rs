@@ -1,30 +1,34 @@
-//use bitfield::UnvalidatedBitField;
-//use encoding::{de, from_slice, ser, to_vec, Cbor, Error as EncodingError};
-//use encoding::{de::Deserialize, serde_bytes, tuple::*, BytesDe};
-use csv::ReaderBuilder;
-//use serde_derive::{Deserialize, Serialize};
-use std::io::{self, BufRead, BufReader, Cursor, Read};
+use bellperson::groth16::aggregate::AggregateProof;
+use blstrs::Bls12;
+use env_logger::Env;
+use std::io::{self, BufRead, BufReader, Cursor};
+#[macro_use]
+extern crate log;
 extern crate base64;
 
-//use bellperson::bls::Bls12;
-use bellperson::groth16::aggregate::AggregateProof;
-use blstrs::{Bls12, Compress};
-
 fn main() {
+    env_logger::Builder::from_env(Env::default().default_filter_or("error")).init();
     let reader = BufReader::new(io::stdin());
     for (index, line) in reader.lines().enumerate() {
         let line = line.unwrap();
         let fields = line.split(" ").collect::<Vec<_>>();
-        let (proof, exitcode) = (fields[0], fields[1]);
+        let (proof, code) = (fields[0], fields[1]);
+        let exit_code = code.parse::<i32>().unwrap();
         let proof_decoded = base64::decode(proof).unwrap();
         match AggregateProof::<Bls12>::read(Cursor::new(&proof_decoded)) {
-            Ok(_) => println!("proof {} (exit {}) parsed correctly", index + 1, exitcode),
-            Err(e) => println!(
-                "proof {} (exit {}) parsed INVALID: {}",
-                index + 1,
-                exitcode,
-                e
-            ),
+            Ok(_) => debug!("proof {} (exit {}) parsed correctly", index + 1, exit_code),
+            Err(e) => {
+                if exit_code == 0 {
+                    error!("proof {} INVALID but exit 0!", index + 1);
+                } else {
+                    debug!(
+                        "proof {} (exit {}) parsed INVALID: {}",
+                        index + 1,
+                        exit_code,
+                        e
+                    )
+                }
+            }
         }
     }
 }
