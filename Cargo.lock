@@ -29,7 +29,6 @@ checksum = "904dfeac50f3cdaba28fc6f57fdcddb75f49ed61346676a78c4ffe55877802fd"
 [[package]]
 name = "bellperson"
 version = "0.16.3"
-source = "git+https://github.com/filecoin-project/bellperson?branch=master#8c9528ddac45ffbf06c0005c5ea1906085e3b2f4"
 dependencies = [
  "bincode",
  "bit-vec",
@@ -120,7 +119,6 @@ dependencies = [
 [[package]]
 name = "blstrs"
 version = "0.3.1"
-source = "git+https://github.com/filecoin-project/blstrs?branch=master#a902e269be5b3093144980b8ba90289cc5a0a012"
 dependencies = [
  "blst",
  "byte-slice-cast",
