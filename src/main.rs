@@ -20,7 +20,7 @@ fn main() {
         .enumerate()
         .par_bridge()
         .map(|(index, line)| {
-            if index + 1 % inc == 0 {
+            if (index + 1) % inc == 0 {
                 println!("Processing line {} ... ", index + 1);
             }
             let line = line.unwrap();
