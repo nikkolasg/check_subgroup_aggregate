@@ -13,14 +13,16 @@ fn main() {
     env_logger::Builder::from_env(Env::default().default_filter_or("error")).init();
     let reader = BufReader::new(io::stdin());
     let inc = 1000;
-    let mut invalid = 0;
 
-    invalid = reader
+    let invalid: usize = reader
         .lines()
         .skip(1)
         .enumerate()
         .par_bridge()
         .map(|(index, line)| {
+            if index + 1 % inc == 0 {
+                println!("Processing line {} ... ", index + 1);
+            }
             let line = line.unwrap();
             let fields = line.split(",").collect::<Vec<_>>();
             let (proof, code) = (fields[0], fields[1]);
