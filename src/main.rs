@@ -37,10 +37,7 @@ fn main() {
                     0
                 }
                 Err(e) => {
-                    if exit_code == 0 {
-                        error!("proof {} INVALID but exit 0!", index + 1);
-                        1
-                    } else {
+                    if exit_code != 0 {
                         debug!(
                             "proof {} (exit {}) parsed INVALID: {}",
                             index + 1,
@@ -48,6 +45,9 @@ fn main() {
                             e
                         );
                         0
+                    } else {
+                        error!("proof {} INVALID but exit 0!", index + 1);
+                        1
                     }
                 }
             }
